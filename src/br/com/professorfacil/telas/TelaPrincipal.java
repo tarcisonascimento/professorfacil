@@ -63,6 +63,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem61 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu17 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Gestão Escolar e Ensalamento - Escholla");
@@ -244,6 +246,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu17.setText("Ajuda");
         jMenuBar1.add(jMenu17);
 
+        jMenu2.setText("Administrador");
+
+        jMenuItem2.setText("Painel");
+        jMenu2.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,7 +295,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem56ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        gerenciadorDeJanelas.AbrirJanelas(TelaConfiguracao.getInstancia());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenu16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu16ActionPerformed
@@ -334,7 +343,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane DesktopPrincipal;
+    public static javax.swing.JDesktopPane DesktopPrincipal;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
@@ -346,9 +355,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu16;
     private javax.swing.JMenu jMenu17;
     private javax.swing.JMenu jMenu18;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem45;
     private javax.swing.JMenuItem jMenuItem46;
     private javax.swing.JMenuItem jMenuItem56;
