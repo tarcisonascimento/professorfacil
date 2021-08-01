@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import br.com.professorfacil.dal.ModuloConexao;
 import br.com.professorfacil.classes.FormatData;
-import java.sql.*;
+
 
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -33,6 +33,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 FormatData p = new FormatData();
                 TelaPrincipal.lblData.setText(p.data());//pega os parametros que eu quero
                 TelaPrincipal.lblPerfil.setText(rs.getString("uso_perfil"));
+                TelaPrincipal.lbMatricula.setText(rs.getString("iduso"));
                 this.dispose();
                 conexao.close();
 
