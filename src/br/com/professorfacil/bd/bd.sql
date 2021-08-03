@@ -49,6 +49,7 @@ values ("1º");
 create table livro (
 idliv int primary key auto_increment not null,
 liv_nomeautor varchar (200),
+liv_nome varchar (200),
 liv_editora varchar (150),
 liv_edicao varchar (50),
 liv_ano varchar (10),
@@ -95,4 +96,12 @@ esc_Uf varchar (10),
 esc_endereco varchar (250),
 esc_num varchar (10),
 esc_brasao longblob
+);
+
+create table compselecionado (
+idcompselec int primary key auto_increment not null,
+iduso int not null,
+nomecomponente varchar(100),
+foreign key (iduso) references usuarios (iduso)
+
 );
