@@ -243,41 +243,6 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                 }
 
             }
-            preenchecmbdoslivros();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar informações do livro " + e);
-        }
-    }
-
-    private void inserenovolivro() {
-        String sql = "insert into livro (liv_componente,liv_nomeautor,liv_nome,liv_editora,liv_edicao,liv_ano,liv_serie,liv_periodo,liv_observacoes,liv_foto) values (?,?,?,?,?,?,?,?,?,?)";
-
-        try {
-            pst = conexao.prepareStatement(sql); //preparando a conexão
-            pst.setString(1, cmbCompLivro.getSelectedItem().toString());
-            pst.setString(2, txtNomeAutLivro.getText());
-            pst.setString(3, txtNomeLivro.getText());
-            pst.setString(4, cmbEditLivro.getSelectedItem().toString());
-            pst.setString(5, txtEdicaoLivro.getText());
-            pst.setString(6, txtAnoLivro.getText());
-            pst.setString(7, cmbSerieLivro.getSelectedItem().toString());
-            pst.setString(8, txtPeriodoLivro.getText());
-            pst.setString(9, txtObservaLivro.getText());
-
-            if (vfoto2 == null) {
-
-                String caminho = localfoto2;
-                foto002 = ManipularImagem.setImagemDimensao(caminho, lblFoto2.getWidth(), lblFoto2.getHeight());
-                vfoto2 = ManipularImagem.getImgBytes(foto002);
-                pst.setBytes(10, vfoto2);
-            } else {
-                pst.setBytes(10, vfoto2);
-            }
-
-            pst.executeUpdate();//caso a adição for concluida cai no if
-
-            preenchecmbdoslivros();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar informações do livro " + e);
@@ -485,6 +450,13 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     }
 
     public void preenchecmbdoslivros() {
+        cmbSerieLivro.removeAllItems();
+        cmbCompLivro.removeAllItems();
+        cmbEditLivro.removeAllItems();
+
+        cmbSerieLivro.addItem("Selecione");
+        cmbEditLivro.addItem("Selecione");
+        cmbCompLivro.addItem("Selecione");
 
         //o metodo abaixo preenche a combobox com os itens cadastrados
         //https://www.youtube.com/watch?v=yxpgplPTIPY
@@ -860,30 +832,32 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
         jTextField24 = new javax.swing.JTextField();
         jTextField25 = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtContCont = new javax.swing.JTextArea();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        txtHabCont = new javax.swing.JTextArea();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        txtAtvCOnt = new javax.swing.JTextArea();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
+        txtRecCont = new javax.swing.JTextArea();
         jLabel35 = new javax.swing.JLabel();
-        jTextField28 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
-        jTextField30 = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jTextField31 = new javax.swing.JTextField();
+        btnSalvarCont = new javax.swing.JButton();
         jLabel38 = new javax.swing.JLabel();
+        txtCompCont = new javax.swing.JTextField();
+        txtSerieCont = new javax.swing.JTextField();
+        txtIdContAdd = new javax.swing.JTextField();
+        btnExcluirCont = new javax.swing.JButton();
+        btnCancelarCont = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
+        txtIdLivroCont = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
+        btnbuscCont = new javax.swing.JButton();
         jScrollPane13 = new javax.swing.JScrollPane();
-        jTable8 = new javax.swing.JTable();
+        tblCodCont = new javax.swing.JTable();
+        jLabel39 = new javax.swing.JLabel();
+        btnOkCont = new javax.swing.JButton();
+        txtCodCont = new javax.swing.JTextField();
+        txtUnidadeTematica = new javax.swing.JTextField();
 
         setClosable(true);
 
@@ -1439,7 +1413,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                             .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 273, Short.MAX_VALUE))
+                        .addGap(0, 39, Short.MAX_VALUE))
                     .addComponent(abaComponentes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
@@ -1612,7 +1586,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Componentes", jPanel3);
@@ -1784,7 +1758,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Editora", jPanel9);
@@ -1956,7 +1930,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Séries", jPanel14);
@@ -2126,7 +2100,6 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                                 .addComponent(btnBuscaLivroFoto)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelaLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalvaLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -2315,59 +2288,87 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
         jTextField25.setFocusable(false);
         jTextField25.setOpaque(false);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setWrapStyleWord(true);
-        jScrollPane7.setViewportView(jTextArea2);
+        txtContCont.setColumns(20);
+        txtContCont.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        txtContCont.setLineWrap(true);
+        txtContCont.setRows(5);
+        txtContCont.setWrapStyleWord(true);
+        txtContCont.setEnabled(false);
+        jScrollPane7.setViewportView(txtContCont);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jTextArea3.setWrapStyleWord(true);
-        jScrollPane8.setViewportView(jTextArea3);
+        txtHabCont.setColumns(20);
+        txtHabCont.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        txtHabCont.setLineWrap(true);
+        txtHabCont.setRows(5);
+        txtHabCont.setWrapStyleWord(true);
+        txtHabCont.setEnabled(false);
+        jScrollPane8.setViewportView(txtHabCont);
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTextArea4.setLineWrap(true);
-        jTextArea4.setRows(5);
-        jTextArea4.setWrapStyleWord(true);
-        jScrollPane9.setViewportView(jTextArea4);
+        txtAtvCOnt.setColumns(20);
+        txtAtvCOnt.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        txtAtvCOnt.setLineWrap(true);
+        txtAtvCOnt.setRows(5);
+        txtAtvCOnt.setWrapStyleWord(true);
+        txtAtvCOnt.setEnabled(false);
+        jScrollPane9.setViewportView(txtAtvCOnt);
 
-        jTextArea5.setColumns(20);
-        jTextArea5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTextArea5.setLineWrap(true);
-        jTextArea5.setRows(5);
-        jTextArea5.setWrapStyleWord(true);
-        jScrollPane10.setViewportView(jTextArea5);
+        txtRecCont.setColumns(20);
+        txtRecCont.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        txtRecCont.setLineWrap(true);
+        txtRecCont.setRows(5);
+        txtRecCont.setWrapStyleWord(true);
+        txtRecCont.setEnabled(false);
+        jScrollPane10.setViewportView(txtRecCont);
 
         jLabel35.setText("Disciplina");
 
-        jTextField28.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField28.setText("Educação Física");
-        jTextField28.setFocusable(false);
-        jTextField28.setOpaque(false);
-
         jLabel36.setText("Ano/Turma");
 
-        jTextField30.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField30.setText("8ºC");
-        jTextField30.setFocusable(false);
-        jTextField30.setOpaque(false);
-
-        jButton11.setText("ALTERAR");
-
-        jButton12.setText("SALVAR");
-
-        jButton13.setText("NOVO");
-
-        jTextField31.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField31.setFocusable(false);
-        jTextField31.setOpaque(false);
+        btnSalvarCont.setText("SALVAR");
+        btnSalvarCont.setEnabled(false);
 
         jLabel38.setText("ID Conteúdo");
+
+        txtCompCont.setEditable(false);
+        txtCompCont.setBackground(new java.awt.Color(255, 255, 204));
+        txtCompCont.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtCompCont.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCompCont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCompContActionPerformed(evt);
+            }
+        });
+
+        txtSerieCont.setEditable(false);
+        txtSerieCont.setBackground(new java.awt.Color(255, 255, 204));
+        txtSerieCont.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtSerieCont.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSerieCont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSerieContActionPerformed(evt);
+            }
+        });
+
+        txtIdContAdd.setEditable(false);
+        txtIdContAdd.setBackground(new java.awt.Color(255, 255, 204));
+        txtIdContAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtIdContAdd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtIdContAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdContAddActionPerformed(evt);
+            }
+        });
+
+        btnExcluirCont.setText("EXCLUIR");
+        btnExcluirCont.setEnabled(false);
+
+        btnCancelarCont.setText("CANCELAR");
+        btnCancelarCont.setEnabled(false);
+        btnCancelarCont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarContActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -2379,32 +2380,34 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel35)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCompCont, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel36)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSerieCont, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel38)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtIdContAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jTextField22)
-                            .addComponent(jButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(jTextField22))
+                            .addComponent(btnExcluirCont))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField23)
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelarCont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextField24)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalvarCont, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(jTextField25))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2414,11 +2417,11 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
-                    .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36)
-                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel38))
+                    .addComponent(jLabel38)
+                    .addComponent(txtCompCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSerieCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdContAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2431,11 +2434,11 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane9)
                     .addComponent(jScrollPane10)
                     .addComponent(jScrollPane7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12)
-                    .addComponent(jButton13))
+                    .addComponent(btnSalvarCont)
+                    .addComponent(btnExcluirCont)
+                    .addComponent(btnCancelarCont))
                 .addGap(16, 16, 16))
         );
 
@@ -2461,73 +2464,107 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
         jLabel34.setText("ID do Livro:");
         jLabel34.setToolTipText("");
 
-        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtIdLivroCont.setBackground(new java.awt.Color(255, 255, 204));
+        txtIdLivroCont.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtIdLivroCont.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel37.setText("Código do Conteúdo");
+        jLabel37.setText("Unidade Temática");
         jLabel37.setToolTipText("");
 
-        jButton20.setText("Preencher");
+        btnbuscCont.setText("Buscar");
+        btnbuscCont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscContActionPerformed(evt);
+            }
+        });
 
-        jButton21.setText("Iniciar");
-
-        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+        tblCodCont.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Código Conteúdo"
+                "ID", "Cód. Cont.", "Unid. Tem."
             }
         ));
-        jScrollPane13.setViewportView(jTable8);
-        if (jTable8.getColumnModel().getColumnCount() > 0) {
-            jTable8.getColumnModel().getColumn(0).setMinWidth(30);
-            jTable8.getColumnModel().getColumn(0).setPreferredWidth(30);
-            jTable8.getColumnModel().getColumn(0).setMaxWidth(30);
+        jScrollPane13.setViewportView(tblCodCont);
+        if (tblCodCont.getColumnModel().getColumnCount() > 0) {
+            tblCodCont.getColumnModel().getColumn(0).setMinWidth(30);
+            tblCodCont.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tblCodCont.getColumnModel().getColumn(0).setMaxWidth(30);
+            tblCodCont.getColumnModel().getColumn(1).setMinWidth(100);
+            tblCodCont.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblCodCont.getColumnModel().getColumn(1).setMaxWidth(100);
         }
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel39.setText("Cód. Cont.:");
+        jLabel39.setToolTipText("");
+
+        btnOkCont.setText("OK");
+        btnOkCont.setEnabled(false);
+        btnOkCont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkContActionPerformed(evt);
+            }
+        });
+
+        txtCodCont.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtCodCont.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodCont.setEnabled(false);
+
+        txtUnidadeTematica.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtUnidadeTematica.setEnabled(false);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jTextField27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField26, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton20))
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(13, 13, 13)
+                        .addContainerGap(76, Short.MAX_VALUE)
+                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                                    .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIdLivroCont)
+                                    .addComponent(txtCodCont))
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnOkCont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnbuscCont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtUnidadeTematica, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(13, 13, 13)))
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -2538,23 +2575,24 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(btnbuscCont, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(txtIdLivroCont, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField27, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                            .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnOkCont, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCodCont))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(txtUnidadeTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Cadastrar Conteúdo", jPanel11);
@@ -2572,7 +2610,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -3248,11 +3286,11 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     private void btnNovoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoLivroActionPerformed
         ativacamposlivro();
         limpacamposlivro();
-        
+
         ImageIcon foto1 = new ImageIcon(localfoto2);
         foto1.setImage(foto1.getImage().getScaledInstance(lblFoto2.getWidth(), lblFoto2.getHeight(), Image.SCALE_AREA_AVERAGING));
         lblFoto2.setIcon(foto1);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNovoLivroActionPerformed
 
@@ -3264,10 +3302,306 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     private void btnEditLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditLivroActionPerformed
         ativacamposlivro();        // TODO add your handling code here:
     }//GEN-LAST:event_btnEditLivroActionPerformed
+    private void inserenovolivro() {
+        String sql = "insert into livro (liv_componente,liv_nomeautor,liv_nome,liv_editora,liv_edicao,liv_ano,liv_serie,liv_periodo,liv_observacoes,liv_foto) values (?,?,?,?,?,?,?,?,?,?)";
+
+        try {
+            pst = conexao.prepareStatement(sql); //preparando a conexão
+            pst.setString(1, cmbCompLivro.getSelectedItem().toString());
+            pst.setString(2, txtNomeAutLivro.getText());
+            pst.setString(3, txtNomeLivro.getText());
+            pst.setString(4, cmbEditLivro.getSelectedItem().toString());
+            pst.setString(5, txtEdicaoLivro.getText());
+            pst.setString(6, txtAnoLivro.getText());
+            pst.setString(7, cmbSerieLivro.getSelectedItem().toString());
+            pst.setString(8, txtPeriodoLivro.getText());
+            pst.setString(9, txtObservaLivro.getText());
+
+            if (vfoto2 == null) {
+
+                String caminho = localfoto2;
+                foto002 = ManipularImagem.setImagemDimensao(caminho, lblFoto2.getWidth(), lblFoto2.getHeight());
+                vfoto2 = ManipularImagem.getImgBytes(foto002);
+                pst.setBytes(10, vfoto2);
+            } else {
+                pst.setBytes(10, vfoto2);
+            }
+
+            int adicionado = pst.executeUpdate();//caso a adição for concluida cai no if
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Livro inserido com sucesso!");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir informações do livro " + e);
+        }
+    }
+
+    private void alteralivro() {
+
+        String sql = "update livro set liv_componente=?,liv_nomeautor=?,liv_nome=?,liv_editora=?,liv_edicao=?,liv_ano=?,liv_serie=?,liv_periodo=?,liv_observacoes=?,liv_foto=? where idliv=?";
+
+        try {
+            pst = conexao.prepareStatement(sql); //preparando a conexão
+            pst.setString(1, cmbCompLivro.getSelectedItem().toString());
+            pst.setString(2, txtNomeAutLivro.getText());
+            pst.setString(3, txtNomeLivro.getText());
+            pst.setString(4, cmbEditLivro.getSelectedItem().toString());
+            pst.setString(5, txtEdicaoLivro.getText());
+            pst.setString(6, txtAnoLivro.getText());
+            pst.setString(7, cmbSerieLivro.getSelectedItem().toString());
+            pst.setString(8, txtPeriodoLivro.getText());
+            pst.setString(9, txtObservaLivro.getText());
+
+            if (vfoto2 == null) {
+
+                String caminho = localfoto2;
+                foto002 = ManipularImagem.setImagemDimensao(caminho, lblFoto2.getWidth(), lblFoto2.getHeight());
+                vfoto2 = ManipularImagem.getImgBytes(foto002);
+                pst.setBytes(10, vfoto2);
+            } else {
+                pst.setBytes(10, vfoto2);
+            }
+            pst.setString(11, txtIdLivro.getText());
+
+            int adicionado = pst.executeUpdate();//caso a adição for concluida cai no if
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Livro alterado com sucesso!");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar informações do livro " + e);
+        }
+    }
 
     private void btnSalvaLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaLivroActionPerformed
-        inserenovolivro();        // TODO add your handling code here:
+        if ((cmbCompLivro.getSelectedItem().equals("Selecione")) || (txtNomeAutLivro.getText().isEmpty()) || (txtNomeLivro.getText().isEmpty()) || (cmbEditLivro.getSelectedItem().equals("Selecione")) || (txtEdicaoLivro.getText().isEmpty()) || (txtAnoLivro.getText().isEmpty()) || (cmbSerieLivro.getSelectedItem().equals("Selecione")) || (txtPeriodoLivro.getText().isEmpty())) {
+
+            JOptionPane.showMessageDialog(null, "(*)Todos os campos são obrigatórios");
+
+        } else {
+
+            if (txtIdLivro.getText().isEmpty()) {
+                inserenovolivro();
+                preencherlivros1();
+                limpacamposlivro();
+                desativacamposlivro();
+
+            } else {
+                alteralivro();
+                preencherlivros1();
+                limpacamposlivro();
+                desativacamposlivro();
+
+            }
+
+        }
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvaLivroActionPerformed
+
+    private void btnOkContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkContActionPerformed
+
+        consexistcont();
+    }//GEN-LAST:event_btnOkContActionPerformed
+
+    private void btnbuscContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscContActionPerformed
+        if (txtIdLivroCont.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Informe o Id do Livro para continuar!");
+
+        } else {
+            preencherareacont();
+            btnOkCont.setEnabled(true);
+            txtCodCont.setEnabled(true);
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbuscContActionPerformed
+
+    private void txtIdContAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdContAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdContAddActionPerformed
+
+    private void txtSerieContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSerieContActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSerieContActionPerformed
+
+    private void txtCompContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCompContActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCompContActionPerformed
+    int salvo4 = 1;
+
+    private void desativaaddcont() {
+        txtCodCont.setEnabled(true);
+        btnOkCont.setEnabled(true);
+        txtIdLivroCont.setEnabled(true);
+        btnbuscCont.setEnabled(true);
+
+        txtUnidadeTematica.setEnabled(false);
+        btnExcluirCont.setEnabled(false);
+        txtContCont.setEnabled(false);
+        txtHabCont.setEnabled(false);
+        txtAtvCOnt.setEnabled(false);
+        txtRecCont.setEnabled(false);
+        btnSalvarCont.setEnabled(false);
+        btnCancelarCont.setEnabled(false);
+
+    }
+
+    private void limpacamposcont() {
+
+        txtUnidadeTematica.setText(null);
+        txtContCont.setText(null);
+        txtHabCont.setText(null);
+        txtAtvCOnt.setText(null);
+        txtRecCont.setText(null);
+
+    }
+    private void btnCancelarContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarContActionPerformed
+       
+       if (salvo4 == 0){ 
+        
+        
+        int adicionar = JOptionPane.showConfirmDialog(null, "Você ainda não salvou deseja cancelar?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION);
+
+        if (adicionar == JOptionPane.YES_OPTION) {
+            
+            salvo4 = 1;
+            desativaaddcont();
+            limpacamposcont();
+        }
+       }
+    }//GEN-LAST:event_btnCancelarContActionPerformed
+    
+
+    private void preencherareacont() {
+
+        String sql = "select * from livro where idliv=?";
+
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtIdLivroCont.getText());
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                txtCompCont.setText(rs.getString("liv_componente"));
+                txtSerieCont.setText(rs.getString("liv_serie"));
+                preenchertblcodcont();
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Livro não Localizado!");
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao localizar livro na base de dados" + e);
+        }
+
+    }
+
+    private void preenchertblcodcont() {
+
+        String sql = "select idconteudo,cont_code_conteudo,cont_unidadetematica from conteudo where idliv = ? and cont_componente = ? and cont_serie = ?";
+
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtIdLivroCont.getText());
+            pst.setString(2, txtCompCont.getText());
+            pst.setString(3, txtSerieCont.getText());
+
+            rs = pst.executeQuery();
+
+            tblCodCont.setModel((DbUtils.resultSetToTableModel(rs)));
+            formatatabelacod();
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao localizar livro na base de dados" + e);
+        }
+
+    }
+
+    private void formatatabelacod() {
+
+        tblCodCont.getColumnModel().getColumn(0).setMaxWidth(30);
+        tblCodCont.getColumnModel().getColumn(0).setResizable(false);
+        tblCodCont.getColumnModel().getColumn(0).setHeaderValue("ID");
+        tblCodCont.getColumnModel().getColumn(1).setMaxWidth(100);
+        tblCodCont.getColumnModel().getColumn(1).setResizable(false);
+        tblCodCont.getColumnModel().getColumn(1).setHeaderValue("Cód. Cont.");
+        tblCodCont.getColumnModel().getColumn(2).setHeaderValue("Unid. Tema.");
+
+    }
+
+    // o metodo abaixo consulta se existe o componente a ser inserido
+    private void consexistcont() {
+        String sql = "select * from conteudo where cont_code_conteudo=? and cont_serie=? and cont_componente=?";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtCodCont.getText());
+            pst.setString(2, txtSerieCont.getText());
+            pst.setString(3, txtCompCont.getText());
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                int adicionar = JOptionPane.showConfirmDialog(null, "O Código " + txtCodCont.getText() + " Já existe!\n Deseja edita-lo Agora?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION);
+
+                if (adicionar == JOptionPane.YES_OPTION) {
+                    
+                    salvo4 = 0;
+                    
+                    txtIdContAdd.setText(rs.getString("idconteudo"));
+                    txtUnidadeTematica.setText(rs.getString("cont_unidadetematica"));
+                    txtContCont.setText(rs.getString("cont_conteudo"));
+                    txtHabCont.setText(rs.getString("cont_habilidade"));
+                    txtAtvCOnt.setText(rs.getString("cont_atividade"));
+                    txtRecCont.setText(rs.getString("cont_recurso"));
+                    btnOkCont.setEnabled(false);
+                    txtCodCont.setEnabled(false);
+                    btnCancelarCont.setEnabled(true);
+                    btnExcluirCont.setEnabled(true);
+                    txtContCont.setEnabled(true);
+                    txtHabCont.setEnabled(true);
+                    txtAtvCOnt.setEnabled(true);
+                    txtRecCont.setEnabled(true);
+                    txtUnidadeTematica.setEnabled(true);
+                    btnSalvarCont.setEnabled(true);
+                    txtIdLivroCont.setEnabled(false);
+                    btnbuscCont.setEnabled(false);
+
+                }
+
+            } else {
+
+                int adicionar = JOptionPane.showConfirmDialog(null, "O Código " + txtCodCont.getText() + " Não existe!\n Quer adicionar Agora?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION);
+
+                if (adicionar == JOptionPane.YES_OPTION) {
+
+                    btnOkCont.setEnabled(false);
+                    txtCodCont.setEnabled(false);
+                    btnCancelarCont.setEnabled(true);
+                    txtContCont.setEnabled(true);
+                    txtHabCont.setEnabled(true);
+                    txtAtvCOnt.setEnabled(true);
+                    txtRecCont.setEnabled(true);
+                    txtUnidadeTematica.setEnabled(true);
+                    btnSalvarCont.setEnabled(true);
+                    txtIdLivroCont.setEnabled(false);
+                    btnbuscCont.setEnabled(false);
+
+                }
+
+            }
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao iniciar inclusão " + e);
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3277,6 +3611,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBuscaLivroFoto;
     private javax.swing.JButton btnCancela;
     private javax.swing.JButton btnCancelaLivro;
+    private javax.swing.JButton btnCancelarCont;
     private javax.swing.JButton btnCancelarSerie;
     private javax.swing.JButton btnCancelarcomp;
     private javax.swing.JButton btnCancelaredit;
@@ -3289,28 +3624,27 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditSerie;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEditedit;
+    private javax.swing.JButton btnExcluirCont;
     private javax.swing.JButton btnInseirComp;
     private javax.swing.JButton btnInseirSerie;
     private javax.swing.JButton btnInseiredit;
     private javax.swing.JButton btnNovoLivro;
     private javax.swing.JButton btnNovoUso;
+    private javax.swing.JButton btnOkCont;
     private javax.swing.JButton btnSalvaComp;
     private javax.swing.JButton btnSalvaLivro;
     private javax.swing.JButton btnSalvaSerie;
     private javax.swing.JButton btnSalvaedit;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvarCont;
     private javax.swing.JButton btnadd;
+    private javax.swing.JButton btnbuscCont;
     private javax.swing.JComboBox<String> cmbCompLivro;
     private javax.swing.JComboBox<String> cmbEditLivro;
     private javax.swing.JComboBox<String> cmbLicencaUso;
     private javax.swing.JComboBox<String> cmbPerfilUso;
     private javax.swing.JComboBox<String> cmbSerieLivro;
     private javax.swing.JComboBox<String> cmbcomp;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3340,6 +3674,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -3380,41 +3715,39 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable8;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField31;
     private javax.swing.JLabel lblFoto2;
     private javax.swing.JTable tblBuscaCadastro;
+    private javax.swing.JTable tblCodCont;
     private javax.swing.JTable tblComp;
     private javax.swing.JTable tblComp1;
     private javax.swing.JTable tblEditora;
     private javax.swing.JTable tblLivro;
     private javax.swing.JTable tblSerie;
     private javax.swing.JTextField txtAnoLivro;
+    private javax.swing.JTextArea txtAtvCOnt;
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtBuscaLivros;
     private javax.swing.JFormattedTextField txtCelUso;
     private javax.swing.JFormattedTextField txtCepUso;
     private javax.swing.JTextField txtCidadeUso;
+    private javax.swing.JTextField txtCodCont;
+    private javax.swing.JTextField txtCompCont;
+    private javax.swing.JTextArea txtContCont;
     private javax.swing.JFormattedTextField txtCpfUso;
     private javax.swing.JTextField txtDataCadastro;
     private javax.swing.JFormattedTextField txtDataLicenca;
     private javax.swing.JTextField txtEdicaoLivro;
     private javax.swing.JTextField txtEmailUso;
     private javax.swing.JTextField txtEnderecoUso;
+    private javax.swing.JTextArea txtHabCont;
     private javax.swing.JTextField txtIdComp;
+    private javax.swing.JTextField txtIdContAdd;
     private javax.swing.JTextField txtIdLivro;
+    private javax.swing.JTextField txtIdLivroCont;
     private javax.swing.JTextField txtIdSerie;
     private javax.swing.JTextField txtIdUso;
     private javax.swing.JTextField txtIdedit;
@@ -3427,8 +3760,11 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNumUso;
     private javax.swing.JTextArea txtObservaLivro;
     private javax.swing.JTextField txtPeriodoLivro;
+    private javax.swing.JTextArea txtRecCont;
     private javax.swing.JTextField txtSenhaUso;
+    private javax.swing.JTextField txtSerieCont;
     private javax.swing.JTextField txtUfUso;
+    private javax.swing.JTextField txtUnidadeTematica;
     private javax.swing.JTextField txtUsuarioUso;
     private javax.swing.JFormattedTextField txtValidadeLicensa;
     // End of variables declaration//GEN-END:variables

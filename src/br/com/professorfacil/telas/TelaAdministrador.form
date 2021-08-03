@@ -33,7 +33,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="586" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -86,7 +86,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="478" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="273" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
                           </Group>
                           <Component id="abaComponentes" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -877,7 +877,7 @@
                           <Component id="jScrollPane2" min="-2" pref="481" max="-2" attributes="0"/>
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="300" max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1104,7 +1104,7 @@
                           <Component id="jScrollPane12" alignment="0" min="-2" pref="481" max="-2" attributes="0"/>
                           <Component id="jPanel17" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="300" max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1331,7 +1331,7 @@
                           <Component id="jScrollPane14" alignment="0" min="-2" pref="481" max="-2" attributes="0"/>
                           <Component id="jPanel18" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="300" max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1638,7 +1638,6 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnCancelaLivro" min="-2" pref="177" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnSalvaLivro" min="-2" pref="200" max="-2" attributes="0"/>
@@ -2063,24 +2062,37 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextField27" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton21" min="-2" pref="84" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel37" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel34" min="-2" pref="83" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField26" pref="73" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton20" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="76" max="32767" attributes="0"/>
+                              <Component id="jLabel37" min="-2" pref="122" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane13" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jScrollPane13" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel34" pref="83" max="32767" attributes="0"/>
+                                          <Component id="jLabel39" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtIdLivroCont" max="32767" attributes="0"/>
+                                          <Component id="txtCodCont" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="btnOkCont" max="32767" attributes="0"/>
+                                          <Component id="btnbuscCont" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="txtUnidadeTematica" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jTabbedPane2" min="-2" pref="864" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -2093,28 +2105,28 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField26" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Component id="jLabel34" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="jButton20" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jLabel34" alignment="3" pref="29" max="32767" attributes="0"/>
+                                  <Component id="btnbuscCont" pref="29" max="32767" attributes="0"/>
+                                  <Component id="txtIdLivroCont" alignment="0" pref="29" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel37" min="-2" pref="29" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextField27" pref="29" max="32767" attributes="0"/>
-                                  <Component id="jButton21" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btnOkCont" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="jLabel39" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtCodCont" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel37" min="-2" pref="17" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="txtUnidadeTematica" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane13" min="-2" pref="408" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTabbedPane2" min="-2" pref="535" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane13" min="-2" pref="418" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jTabbedPane2" min="-2" pref="535" max="-2" attributes="0"/>
+                              <EmptySpace pref="14" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -2170,21 +2182,24 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField28" min="-2" pref="169" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtCompCont" min="-2" pref="155" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField30" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="txtSerieCont" min="-2" pref="82" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField31" min="-2" pref="105" max="-2" attributes="0"/>
+                                          <Component id="txtIdContAdd" min="-2" pref="82" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jScrollPane7" alignment="1" pref="200" max="32767" attributes="0"/>
-                                              <Component id="jTextField22" alignment="1" max="32767" attributes="0"/>
-                                              <Component id="jButton13" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="jScrollPane7" alignment="1" pref="200" max="32767" attributes="0"/>
+                                                  <Component id="jTextField22" alignment="1" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="btnExcluirCont" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2193,13 +2208,13 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jButton11" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="btnCancelarCont" max="32767" attributes="0"/>
                                               <Component id="jTextField24" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jScrollPane9" alignment="0" pref="200" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jButton12" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="btnSalvarCont" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jScrollPane10" alignment="0" pref="200" max="32767" attributes="0"/>
                                               <Component id="jTextField25" max="32767" attributes="0"/>
                                           </Group>
@@ -2214,11 +2229,11 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField28" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField30" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField31" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCompCont" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtSerieCont" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtIdContAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -2234,11 +2249,11 @@
                                       <Component id="jScrollPane10" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnSalvarCont" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnExcluirCont" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnCancelarCont" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                               </Group>
@@ -2285,7 +2300,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTextArea" name="jTextArea2">
+                            <Component class="javax.swing.JTextArea" name="txtContCont">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2294,6 +2309,7 @@
                                 <Property name="lineWrap" type="boolean" value="true"/>
                                 <Property name="rows" type="int" value="5"/>
                                 <Property name="wrapStyleWord" type="boolean" value="true"/>
+                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2305,7 +2321,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTextArea" name="jTextArea3">
+                            <Component class="javax.swing.JTextArea" name="txtHabCont">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2314,6 +2330,7 @@
                                 <Property name="lineWrap" type="boolean" value="true"/>
                                 <Property name="rows" type="int" value="5"/>
                                 <Property name="wrapStyleWord" type="boolean" value="true"/>
+                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2325,7 +2342,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTextArea" name="jTextArea4">
+                            <Component class="javax.swing.JTextArea" name="txtAtvCOnt">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2334,6 +2351,7 @@
                                 <Property name="lineWrap" type="boolean" value="true"/>
                                 <Property name="rows" type="int" value="5"/>
                                 <Property name="wrapStyleWord" type="boolean" value="true"/>
+                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2345,7 +2363,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTextArea" name="jTextArea5">
+                            <Component class="javax.swing.JTextArea" name="txtRecCont">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2354,6 +2372,7 @@
                                 <Property name="lineWrap" type="boolean" value="true"/>
                                 <Property name="rows" type="int" value="5"/>
                                 <Property name="wrapStyleWord" type="boolean" value="true"/>
+                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2363,53 +2382,81 @@
                             <Property name="text" type="java.lang.String" value="Disciplina"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField28">
-                          <Properties>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="Educa&#xe7;&#xe3;o F&#xed;sica"/>
-                            <Property name="focusable" type="boolean" value="false"/>
-                            <Property name="opaque" type="boolean" value="false"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="jLabel36">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Ano/Turma"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField30">
-                          <Properties>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="8&#xba;C"/>
-                            <Property name="focusable" type="boolean" value="false"/>
-                            <Property name="opaque" type="boolean" value="false"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButton11">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="ALTERAR"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButton12">
+                        <Component class="javax.swing.JButton" name="btnSalvarCont">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="SALVAR"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButton13">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="NOVO"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField31">
-                          <Properties>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="focusable" type="boolean" value="false"/>
-                            <Property name="opaque" type="boolean" value="false"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel38">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="ID Conte&#xfa;do"/>
                           </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtCompCont">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="cc" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCompContActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtSerieCont">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="cc" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSerieContActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtIdContAdd">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="cc" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdContAddActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnExcluirCont">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="EXCLUIR"/>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnCancelarCont">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="CANCELAR"/>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarContActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -2427,29 +2474,34 @@
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField26">
+            <Component class="javax.swing.JTextField" name="txtIdLivroCont">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel37">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
+                  <Font name="Tahoma" size="12" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="C&#xf3;digo do Conte&#xfa;do"/>
+                <Property name="text" type="java.lang.String" value="Unidade Tem&#xe1;tica"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField27">
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton20">
+            <Component class="javax.swing.JButton" name="btnbuscCont">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Preencher"/>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton21">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Iniciar"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbuscContActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane13">
               <AuxValues>
@@ -2458,17 +2510,23 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable8">
+                <Component class="javax.swing.JTable" name="tblCodCont">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="24">
+                      <Table columnCount="3" rowCount="20">
                         <Column editable="true" title="ID" type="java.lang.Object"/>
-                        <Column editable="true" title="C&#xf3;digo Conte&#xfa;do" type="java.lang.Object"/>
+                        <Column editable="true" title="C&#xf3;d. Cont." type="java.lang.Object"/>
+                        <Column editable="true" title="Unid. Tem." type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="30" minWidth="30" prefWidth="30" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -2487,6 +2545,42 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="jLabel39">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="C&#xf3;d. Cont.:"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnOkCont">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="OK"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOkContActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCodCont">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtUnidadeTematica">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
