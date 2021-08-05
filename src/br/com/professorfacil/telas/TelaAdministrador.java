@@ -836,7 +836,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         txtHabCont = new javax.swing.JTextArea();
         jScrollPane9 = new javax.swing.JScrollPane();
-        txtAtvCOnt = new javax.swing.JTextArea();
+        txtAtvCont = new javax.swing.JTextArea();
         jScrollPane10 = new javax.swing.JScrollPane();
         txtRecCont = new javax.swing.JTextArea();
         jLabel35 = new javax.swing.JLabel();
@@ -2304,13 +2304,13 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
         txtHabCont.setEnabled(false);
         jScrollPane8.setViewportView(txtHabCont);
 
-        txtAtvCOnt.setColumns(20);
-        txtAtvCOnt.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        txtAtvCOnt.setLineWrap(true);
-        txtAtvCOnt.setRows(5);
-        txtAtvCOnt.setWrapStyleWord(true);
-        txtAtvCOnt.setEnabled(false);
-        jScrollPane9.setViewportView(txtAtvCOnt);
+        txtAtvCont.setColumns(20);
+        txtAtvCont.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        txtAtvCont.setLineWrap(true);
+        txtAtvCont.setRows(5);
+        txtAtvCont.setWrapStyleWord(true);
+        txtAtvCont.setEnabled(false);
+        jScrollPane9.setViewportView(txtAtvCont);
 
         txtRecCont.setColumns(20);
         txtRecCont.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -2326,6 +2326,11 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
 
         btnSalvarCont.setText("SALVAR");
         btnSalvarCont.setEnabled(false);
+        btnSalvarCont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarContActionPerformed(evt);
+            }
+        });
 
         jLabel38.setText("ID Conteúdo");
 
@@ -2507,6 +2512,12 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                 "ID", "Cód. Cont.", "Unid. Tem."
             }
         ));
+        tblCodCont.setEnabled(false);
+        tblCodCont.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCodContMouseClicked(evt);
+            }
+        });
         jScrollPane13.setViewportView(tblCodCont);
         if (tblCodCont.getColumnModel().getColumnCount() > 0) {
             tblCodCont.getColumnModel().getColumn(0).setMinWidth(30);
@@ -2533,6 +2544,11 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
         txtCodCont.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtCodCont.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodCont.setEnabled(false);
+        txtCodCont.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodContFocusGained(evt);
+            }
+        });
 
         txtUnidadeTematica.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtUnidadeTematica.setEnabled(false);
@@ -2574,10 +2590,11 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                            .addComponent(btnbuscCont, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                            .addComponent(txtIdLivroCont, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdLivroCont, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                                .addComponent(btnbuscCont, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -3401,16 +3418,23 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalvaLivroActionPerformed
 
     private void btnOkContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkContActionPerformed
+        if (txtCodCont.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Informe o Código do conteúdo para continuar!");
 
-        consexistcont();
+        } else {
+            consexistcont();
+            tblCodCont.setEnabled(false);
+        }
     }//GEN-LAST:event_btnOkContActionPerformed
 
     private void btnbuscContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscContActionPerformed
         if (txtIdLivroCont.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Informe o Id do Livro para continuar!");
+            JOptionPane.showMessageDialog(null, "Informe o 'ID' do livro para continuar!");
 
         } else {
             preencherareacont();
+            txtCodCont.setText(null);
+            tblCodCont.setEnabled(true);
             btnOkCont.setEnabled(true);
             txtCodCont.setEnabled(true);
 
@@ -3441,7 +3465,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
         btnExcluirCont.setEnabled(false);
         txtContCont.setEnabled(false);
         txtHabCont.setEnabled(false);
-        txtAtvCOnt.setEnabled(false);
+        txtAtvCont.setEnabled(false);
         txtRecCont.setEnabled(false);
         btnSalvarCont.setEnabled(false);
         btnCancelarCont.setEnabled(false);
@@ -3453,26 +3477,195 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
         txtUnidadeTematica.setText(null);
         txtContCont.setText(null);
         txtHabCont.setText(null);
-        txtAtvCOnt.setText(null);
+        txtAtvCont.setText(null);
         txtRecCont.setText(null);
 
     }
     private void btnCancelarContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarContActionPerformed
-       
-       if (salvo4 == 0){ 
-        
-        
-        int adicionar = JOptionPane.showConfirmDialog(null, "Você ainda não salvou deseja cancelar?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION);
 
-        if (adicionar == JOptionPane.YES_OPTION) {
-            
+        if (salvo4 == 0) {
+
+            int adicionar = JOptionPane.showConfirmDialog(null, "Você ainda não salvou deseja cancelar?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION);
+
+            if (adicionar == JOptionPane.YES_OPTION) {
+
+                salvo4 = 1;
+                desativaaddcont();
+                limpacamposcont();
+                tblCodCont.setEnabled(true);
+            }
+        } else {
+
             salvo4 = 1;
             desativaaddcont();
             limpacamposcont();
         }
-       }
     }//GEN-LAST:event_btnCancelarContActionPerformed
-    
+
+    private void clicatabelacont() {
+
+        String sql = "select * from conteudo where idconteudo= ?";
+        int linha = tblCodCont.getSelectedRow();
+
+        String tabela = tblCodCont.getValueAt(linha, 0).toString();//linha é alinha selecionada e 0 é a coluna
+        String codigo = tblCodCont.getValueAt(linha, 1).toString();
+
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, tabela);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                int adicionar = JOptionPane.showConfirmDialog(null, "Deseja editar o código de conteúdo " + codigo + " Agora?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION);
+
+                if (adicionar == JOptionPane.YES_OPTION) {
+
+                    salvo4 = 0;
+
+                    txtCodCont.setText(codigo);
+                    txtIdContAdd.setText(rs.getString("idconteudo"));
+                    txtUnidadeTematica.setText(rs.getString("cont_unidadetematica"));
+                    txtContCont.setText(rs.getString("cont_conteudo"));
+                    txtHabCont.setText(rs.getString("cont_habilidade"));
+                    txtAtvCont.setText(rs.getString("cont_atividade"));
+                    txtRecCont.setText(rs.getString("cont_recurso"));
+                    btnOkCont.setEnabled(false);
+                    txtCodCont.setEnabled(true);
+                    btnCancelarCont.setEnabled(true);
+                    btnExcluirCont.setEnabled(true);
+                    txtContCont.setEnabled(true);
+                    txtHabCont.setEnabled(true);
+                    txtAtvCont.setEnabled(true);
+                    txtRecCont.setEnabled(true);
+                    txtUnidadeTematica.setEnabled(true);
+                    btnSalvarCont.setEnabled(true);
+                    txtIdLivroCont.setEnabled(false);
+                    btnbuscCont.setEnabled(false);
+
+                }
+
+            } else {
+
+            }
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao iniciar inclusão " + e);
+        }
+
+    }
+
+    private void tblCodContMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCodContMouseClicked
+        if (tblCodCont.isEnabled()) {
+            clicatabelacont();
+
+        } else {
+
+        }
+
+
+    }//GEN-LAST:event_tblCodContMouseClicked
+    int aviso1 = 1;
+    private void txtCodContFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodContFocusGained
+
+        if (aviso1 == 1) {
+
+            JOptionPane.showMessageDialog(null, "Informe o código de conteúdo no formato: (00000000) com '( )'");
+            aviso1 = 0;
+
+        }
+
+
+    }//GEN-LAST:event_txtCodContFocusGained
+    private void insereconteudo() {
+        String sql = "insert into conteudo (cont_unidadetematica,cont_conteudo,cont_habilidade,cont_atividade,cont_recurso,cont_code_conteudo,cont_serie,cont_componente,idliv) values (?,?,?,?,?,?,?,?,?)";
+
+        try {
+            pst = conexao.prepareStatement(sql); //preparando a conexão
+            pst.setString(1, txtUnidadeTematica.getText());
+            pst.setString(2, txtContCont.getText());
+            pst.setString(3, txtHabCont.getText());
+            pst.setString(4, txtAtvCont.getText());
+            pst.setString(5, txtRecCont.getText());
+            pst.setString(6, txtCodCont.getText());
+            pst.setString(7, txtSerieCont.getText());
+            pst.setString(8, txtCompCont.getText());
+            pst.setString(9, txtIdLivroCont.getText());
+
+            int adicionado = pst.executeUpdate();//caso a adição for concluida cai no if
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Novo conteúdo inserido com sucesso!");
+
+                preencherareacont();
+                desativaaddcont();
+                limpacamposcont();
+                tblCodCont.setEnabled(true);
+
+                salvo4 = 1;
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir conteúdo " + e);
+        }
+    }
+
+    private void alteraconteudo() {
+
+        String sql = "update conteudo set cont_unidadetematica=?,cont_conteudo=?,cont_habilidade=?,cont_atividade=?,cont_recurso=?,cont_code_conteudo=?,cont_serie=?,cont_componente=?,idliv=? where idconteudo=?";
+
+        try {
+            pst = conexao.prepareStatement(sql); //preparando a conexão
+            pst.setString(1, txtUnidadeTematica.getText());
+            pst.setString(2, txtContCont.getText());
+            pst.setString(3, txtHabCont.getText());
+            pst.setString(4, txtAtvCont.getText());
+            pst.setString(5, txtRecCont.getText());
+            pst.setString(6, txtCodCont.getText());
+            pst.setString(7, txtSerieCont.getText());
+            pst.setString(8, txtCompCont.getText());
+            pst.setString(9, txtIdLivroCont.getText());
+            pst.setString(10, txtIdContAdd.getText());
+
+            int adicionado = pst.executeUpdate();//caso a adição for concluida cai no if
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Conteúdo alterado com sucesso!");
+
+                preencherareacont();
+                desativaaddcont();
+                limpacamposcont();
+                tblCodCont.setEnabled(true);
+                salvo4 = 1;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar conteúdo " + e);
+        }
+    }
+
+
+    private void btnSalvarContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarContActionPerformed
+        if (txtUnidadeTematica.getText().isEmpty() || txtContCont.getText().isEmpty() || txtHabCont.getText().isEmpty() || txtAtvCont.getText().isEmpty() || txtRecCont.getText().isEmpty()) {
+        
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!","ATENÇÃO!",JOptionPane.ERROR_MESSAGE);
+        
+        }else{
+            int adicionar = JOptionPane.showConfirmDialog(null, "Finalizar a edição das informações?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION);
+
+            if (adicionar == JOptionPane.YES_OPTION) {
+                if (txtIdContAdd.getText().isEmpty()) {
+
+                    insereconteudo();
+
+                } else {
+
+                    alteraconteudo();
+
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_btnSalvarContActionPerformed
 
     private void preencherareacont() {
 
@@ -3552,14 +3745,14 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                 int adicionar = JOptionPane.showConfirmDialog(null, "O Código " + txtCodCont.getText() + " Já existe!\n Deseja edita-lo Agora?", "ATENÇÃO!", JOptionPane.YES_NO_OPTION);
 
                 if (adicionar == JOptionPane.YES_OPTION) {
-                    
+
                     salvo4 = 0;
-                    
+
                     txtIdContAdd.setText(rs.getString("idconteudo"));
                     txtUnidadeTematica.setText(rs.getString("cont_unidadetematica"));
                     txtContCont.setText(rs.getString("cont_conteudo"));
                     txtHabCont.setText(rs.getString("cont_habilidade"));
-                    txtAtvCOnt.setText(rs.getString("cont_atividade"));
+                    txtAtvCont.setText(rs.getString("cont_atividade"));
                     txtRecCont.setText(rs.getString("cont_recurso"));
                     btnOkCont.setEnabled(false);
                     txtCodCont.setEnabled(false);
@@ -3567,7 +3760,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
                     btnExcluirCont.setEnabled(true);
                     txtContCont.setEnabled(true);
                     txtHabCont.setEnabled(true);
-                    txtAtvCOnt.setEnabled(true);
+                    txtAtvCont.setEnabled(true);
                     txtRecCont.setEnabled(true);
                     txtUnidadeTematica.setEnabled(true);
                     btnSalvarCont.setEnabled(true);
@@ -3582,12 +3775,14 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
 
                 if (adicionar == JOptionPane.YES_OPTION) {
 
+                    salvo4 = 0;
+                    txtIdContAdd.setText(null);
                     btnOkCont.setEnabled(false);
                     txtCodCont.setEnabled(false);
                     btnCancelarCont.setEnabled(true);
                     txtContCont.setEnabled(true);
                     txtHabCont.setEnabled(true);
-                    txtAtvCOnt.setEnabled(true);
+                    txtAtvCont.setEnabled(true);
                     txtRecCont.setEnabled(true);
                     txtUnidadeTematica.setEnabled(true);
                     btnSalvarCont.setEnabled(true);
@@ -3728,7 +3923,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblLivro;
     private javax.swing.JTable tblSerie;
     private javax.swing.JTextField txtAnoLivro;
-    private javax.swing.JTextArea txtAtvCOnt;
+    private javax.swing.JTextArea txtAtvCont;
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtBuscaLivros;
     private javax.swing.JFormattedTextField txtCelUso;

@@ -30,7 +30,7 @@ idcomponente int primary key auto_increment not null,
 comp_nome varchar (100)
 );
 insert into componentes (comp_nome)
-values ("Educação Física"),("Artes");
+values ("Educação Física");
 
 create table editora (
 ideditora int primary key auto_increment not null,
@@ -48,6 +48,7 @@ values ("1º");
 
 create table livro (
 idliv int primary key auto_increment not null,
+liv_componente varchar (150),
 liv_nomeautor varchar (200),
 liv_nome varchar (200),
 liv_editora varchar (150),
@@ -59,8 +60,8 @@ liv_observacoes varchar (200),
 liv_foto longblob
 
 );
-insert into livro (liv_nomeautor,liv_editora,liv_edicao,liv_ano,liv_serie,liv_periodo,liv_observacoes)
-values ("AA_Autor","Moderna","1º Edição","2020","1º","2020,2021,2022,2023","Sem Observações");
+insert into livro (liv_componente,liv_nomeautor,liv_nome,liv_editora,liv_edicao,liv_ano,liv_serie,liv_periodo,liv_observacoes)
+values ("Educação Física","AA_Autor","Educação acima de tudo","Moderna","1º Edição","2020","1º","2020,2021,2022,2023","Sem Observações");
 
 create table conteudo (
 idconteudo int primary key auto_increment not null,
@@ -70,12 +71,15 @@ cont_atividade longblob,
 cont_recurso longblob,
 cont_code_conteudo varchar (60),
 cont_serie varchar (10),
-cont_componente varchar (50),
-idliv int not null,
-foreign key (idliv) references livro (idliv)
+cont_componente varchar (100),
+cont_unidadetematica varchar (200),
+idliv int not null
 );
 insert into conteudo (cont_conteudo,cont_habilidade,cont_atividade,cont_recurso,cont_code_conteudo,cont_serie,cont_componente,idliv)
-values ("Aqui vai o conteudo","Aqui Vai as habilidades","aqui vai os recursos","aqui vao os conteudos","(EF254DF)","1º","Educação Física","1");
+values ("3","Aqui Vai as habilidades","aqui vai os recursos","aqui vao os conteudos","(EF254DF)","3º","Educação Física","1");
+
+insert into conteudo (cont_code_conteudo,cont_serie,cont_componente,idliv)
+values ("10","1º","Ciências","1");
 
 create table licenca (
 idlicenca int primary key auto_increment not null,
@@ -95,13 +99,15 @@ esc_cidade varchar (150),
 esc_Uf varchar (10),
 esc_endereco varchar (250),
 esc_num varchar (10),
-esc_brasao longblob
+esc_brasao longblob,
+idcli int not null
 );
 
 create table compselecionado (
 idcompselec int primary key auto_increment not null,
 iduso int not null,
-nomecomponente varchar(100),
-foreign key (iduso) references usuarios (iduso)
+nomecomponente varchar(100)
 
 );
+describe conteudo;
+select idliv,idconteudo,cont_code_conteudo,cont_unidadetematica from conteudo where idliv = '1' and cont_componente = "Educação Física" and cont_serie = "1º";
