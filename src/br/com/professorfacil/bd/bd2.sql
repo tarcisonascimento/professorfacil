@@ -87,6 +87,7 @@ idcli int not null,
 lic_chave int not null,
 lic_licenca varchar (100),
 lic_data_valida varchar (30),
+lic_status boolean,
 lic_data_licenca timestamp default current_timestamp
 );
 
@@ -96,12 +97,14 @@ esc_estado varchar (400),
 esc_secretaria varchar (400),
 esc_ecola varchar (400),
 esc_cidade varchar (150),
-esc_Uf varchar (10),
+esc_uf varchar (10),
 esc_endereco varchar (250),
 esc_num varchar (10),
 esc_brasao longblob,
 idcli int not null
 );
+insert into escola (esc_estado,esc_secretaria,esc_ecola,esc_cidade,esc_uf,esc_endereco,esc_num,idcli)
+values ("Estado de Rondônia","Secretaria de estado da educação - SEDUC","E.E.E.F.M. Nome da Escola","Nome da Cidade","RO","Rua nome da rua","1000","2");
 
 create table compselecionado (
 idcompselec int primary key auto_increment not null,
@@ -109,5 +112,9 @@ iduso int not null,
 nomecomponente varchar(100)
 
 );
+insert into compselecionado (iduso,nomecomponente)
+values ("2","Educação Física");
+
+
 describe conteudo;
 select idliv,idconteudo,cont_code_conteudo,cont_unidadetematica from conteudo where idliv = '1' and cont_componente = "Educação Física" and cont_serie = "1º";
