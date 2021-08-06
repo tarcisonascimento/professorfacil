@@ -515,6 +515,7 @@ public class TelaAdministrador extends javax.swing.JInternalFrame {
 
     }
 
+
     private void ativacampousuario() {
 
         txtNomeUso.setEnabled(true);

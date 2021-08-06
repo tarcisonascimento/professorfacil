@@ -17,13 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     GerenciadorDeJanelas gerenciadorDeJanelas; //variavel para trabalhar com o gerenciador de janelas
 
-    static void lblPerfil(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Creates new form TelaPrincipal
-     */
+   
     public TelaPrincipal() {
         initComponents();
         
@@ -151,7 +145,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         lblPerfil.setText("Tipo de Perfil");
 
-        lbMatricula.setText("Matricula");
+        lbMatricula.setText("2");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Matricula:");
