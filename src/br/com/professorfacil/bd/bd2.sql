@@ -93,10 +93,10 @@ lic_nomecli varchar (200),
 lic_cpfcli varchar (50),
 lic_emailcli varchar (150),
 lic_celularcli varchar (50),
-lic_data_licenca timestamp default current_timestamp
+lic_data_licenca varchar (30)
 );
-insert into licenca (idcli)
-values ();
+insert into licenca (idcli,lic_status)
+values ("2",false);
 
 create table escola (
 idescola int primary key auto_increment not null,
@@ -117,7 +117,6 @@ create table compselecionado (
 idcompselec int primary key auto_increment not null,
 iduso int not null,
 nomecomponente varchar(100)
-
 );
 insert into compselecionado (iduso,nomecomponente)
 values ("2","Educação Física");
