@@ -84,12 +84,19 @@ values ("10","1º","Ciências","1");
 create table licenca (
 idlicenca int primary key auto_increment not null,
 idcli int not null,
-lic_chave int not null,
-lic_licenca varchar (100),
+lic_chave varchar (200), -- aqui vai a chave informada pelo usuario
+lic_licenca varchar (200), -- aqui vai a chave de licença para o usuaqui
 lic_data_valida varchar (30),
 lic_status boolean,
+lic_descricao varchar (50) default 'Não Licenciado',
+lic_nomecli varchar (200),
+lic_cpfcli varchar (50),
+lic_emailcli varchar (150),
+lic_celularcli varchar (50),
 lic_data_licenca timestamp default current_timestamp
 );
+insert into licenca (idcli)
+values ();
 
 create table escola (
 idescola int primary key auto_increment not null,

@@ -13,6 +13,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import net.proteanit.sql.DbUtils;
 import br.com.professorfacil.classes.Modulo;
 import static br.com.professorfacil.classes.Modulo.modulo1;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,6 +62,36 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, "Erro ao carregar informações do usuário " + e);
+        }
+
+        String sqlcor = "select * from licenca where idcli=?";
+
+        try {
+            pst = conexao.prepareCall(sqlcor);
+            pst.setString(1, txtIdUso.getText());
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                String situacao = rs.getString("lic_descricao");
+
+                if (situacao.equals("Não Licenciado")) {
+                    lblDescricao.setText(situacao);
+                    lblDescricao.setForeground(new Color(255, 51, 0));
+                }
+                if (situacao.equals("Em Processamento")) {
+                    lblDescricao.setText(situacao);
+                    lblDescricao.setForeground(new Color(0, 61, 250));
+                }
+                if (situacao.equals("Software Licenciado, Obrigado!")) {
+                    lblDescricao.setText(situacao);
+                    lblDescricao.setForeground(new Color(51, 204, 0));
+                }
+            }
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao localizar licença! " + e);
+
         }
 
         String sql1 = "select * from escola where idcli=?";
@@ -127,7 +158,7 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
     }
 
     private void modulogeral() throws Exception {
-        
+
         String sql = "insert into licenca (idcli,lic_chave) values (?,?)";
 
         try {
@@ -235,7 +266,7 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
         jLabel21 = new javax.swing.JLabel();
         txtLic = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel23 = new javax.swing.JLabel();
+        lblDescricao = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         btnRenova = new javax.swing.JButton();
@@ -339,8 +370,19 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
         jLabel11.setText("Senha:");
 
         btnSalvaUso.setText("Salvar");
+        btnSalvaUso.setEnabled(false);
+        btnSalvaUso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvaUsoActionPerformed(evt);
+            }
+        });
 
         btnEditUso.setText("Editar Informações");
+        btnEditUso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditUsoActionPerformed(evt);
+            }
+        });
 
         txtUso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUso.setEnabled(false);
@@ -512,8 +554,18 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
 
         btnSalvaEsc.setText("Salvar");
         btnSalvaEsc.setEnabled(false);
+        btnSalvaEsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvaEscActionPerformed(evt);
+            }
+        });
 
         btnEditEsc.setText("Editar Informações");
+        btnEditEsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditEscActionPerformed(evt);
+            }
+        });
 
         txtNomeEstado.setEnabled(false);
 
@@ -573,40 +625,42 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnEditEsc, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(172, 172, 172)
-                        .addComponent(btnSalvaEsc, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNomeEscola, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCidadeEscola, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel17)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtUfEscola, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtEndEsc, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNumEsco, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNomeEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNomeEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(btnEditEsc, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSalvaEsc, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNomeEscola, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCidadeEscola, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtUfEscola, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtEndEsc, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumEsco, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -639,10 +693,10 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvaEsc)
-                    .addComponent(btnEditEsc))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnEditEsc, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(btnSalvaEsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Informações da Escola", jPanel4);
@@ -740,10 +794,10 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Informações"));
 
-        jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("Não Licenciado");
+        lblDescricao.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblDescricao.setForeground(new java.awt.Color(0, 204, 204));
+        lblDescricao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDescricao.setText("Não Licenciado");
 
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel24.setText("Data do licenciamento:");
@@ -780,14 +834,14 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtLicVal)
                     .addComponent(btnRenova, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addComponent(lblDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
                     .addComponent(txtLicDataLic, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel23)
+                .addComponent(lblDescricao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -838,6 +892,11 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
         });
 
         btnAtiva.setText("Ativar");
+        btnAtiva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtivaActionPerformed(evt);
+            }
+        });
 
         txtLicAut.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -865,14 +924,13 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtLicCel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtLicCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(txtLicNome)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtLicEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(txtLicCel, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtLicCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtLicEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1122,13 +1180,349 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1FocusLost
 
-    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+    private void preencheLIC() {
 
+        String sql = "update usuarios set uso_nome=?,uso_email=?,uso_cpf=?,uso_celular=? where iduso=?";
+
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtLicNome.getText());
+            pst.setString(2, txtLicEmail.getText());
+            pst.setString(3, txtLicCpf.getText());
+            pst.setString(4, txtLicCel.getText());
+            pst.setString(5, txtIdUso.getText());
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao solicitar compra da licença! " + e);
+        }
+
+        String sql2 = "update licenca set lic_nomecli=?,lic_emailcli=?,lic_cpfcli=?,lic_celularcli=?,lic_chave=?,lic_descricao=? where idcli=?";
+
+        try {
+            pst = conexao.prepareStatement(sql2);
+
+            pst.setString(1, txtLicNome.getText());
+            pst.setString(2, txtLicEmail.getText());
+            pst.setString(3, txtLicCpf.getText());
+            pst.setString(4, txtLicCel.getText());
+            pst.setString(5, txtLic.getText());
+            pst.setString(6, "Em Processamento");
+            pst.setString(7, txtIdUso.getText());
+
+            int adicionado = pst.executeUpdate();//caso a adição for concluida cai no if
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Licença solicitada com sucesso!");
+                lblDescricao.setForeground(new Color(0, 61, 250));
+                lblDescricao.setText("Em Processamento");
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao solicitar licença " + e);
+        }
+    }
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        if (txtLicNome.getText().isEmpty() || txtLicEmail.getText().isEmpty() || txtLicCpf.getText().isEmpty() || txtLicCel.getText().isEmpty() || txtLic.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Os campos de informações são obrigatórios!");
+
+        }
+        if (lblDescricao.getText().equals("Em Processamento")) {
+
+            JOptionPane.showMessageDialog(null, "Solicitação de licença já realizada! \nAguarde que um atendente entrará em contato o mais breve possível!\nCaso necessário pode chamar nos contatos\nPor telefone: (69) 9.9209-9315\nPor e-mail: compra@professorfacil.com.br");
+
+        } else {
+
+            int confirma = JOptionPane.showConfirmDialog(null, "Para comprar sua licença siga os passos!"
+                    + "\nVERIFIQUE SE TODAS AS SUAS INFORMAÇÕES ESTÃO CORRETAS"
+                    + "\nPor telefone: (69) 9.9209-9315"
+                    + "\nPor e-mail: compra@professorfacil.com.br"
+                    + "\nInforme a chave do produto:"
+                    + "\n" + txtLic.getText()
+                    + "\nCONFIRMA A SOLICITAÇÃO DE LICENÇA?", "Atenção", JOptionPane.YES_NO_OPTION);
+
+            if (confirma == JOptionPane.YES_OPTION) {
+
+                preencheLIC();
+
+            }
+        }
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void txtLicCelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLicCelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLicCelActionPerformed
+    private void editauso() {
+
+        String sql = "update usuarios set uso_nome=?,uso_cidade=?,uso_estado=?,uso_endereco=?,uso_end_num=?,uso_email=?,uso_cpf=?,uso_celular=?,uso_cep=?,uso_usuario=?,uso_senha=? where iduso=?";
+
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtNomeUso.getText());
+            pst.setString(2, txtCidadeUso.getText());
+            pst.setString(3, txtUfUso.getText());
+            pst.setString(4, txtEndUso.getText());
+            pst.setString(5, txtNumEnd.getText());
+            pst.setString(6, txtEmailUso.getText());
+            pst.setString(7, txtCpfUso.getText());
+            pst.setString(8, txtCelUso.getText());
+            pst.setString(9, txtCepUso.getText());
+            pst.setString(10, txtUso.getText());
+            pst.setString(11, txtSenha.getText());
+            pst.setString(12, txtIdUso.getText());
+
+            int adicionado = pst.executeUpdate();//caso a adição for concluida cai no if
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao alterar cadastro: " + e);
+        }
+
+    }
+
+    private void preencheralterado() {
+
+        String sql = "select * from usuarios where iduso=?";
+
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtIdUso.getText());
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                txtNomeUso.setText(rs.getString("uso_nome"));
+                txtCidadeUso.setText(rs.getString("uso_cidade"));
+                txtUfUso.setText(rs.getString("uso_estado"));
+                txtEndUso.setText(rs.getString("uso_endereco"));
+                txtNumEnd.setText(rs.getString("uso_end_num"));
+                txtEmailUso.setText(rs.getString("uso_email"));
+                txtCpfUso.setText(rs.getString("uso_cpf"));
+                txtCelUso.setText(rs.getString("uso_celular"));
+                txtCepUso.setText(rs.getString("uso_cep"));
+                txtUso.setText(rs.getString("uso_usuario"));
+                txtSenha.setText(rs.getString("uso_senha"));
+
+            }
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao carregar informações do usuário " + e);
+        }
+    }
+
+    private void desativacamposuso() {
+        txtNomeUso.setEnabled(false);
+        txtCidadeUso.setEnabled(false);
+        txtUfUso.setEnabled(false);
+        txtEndUso.setEnabled(false);
+        txtNumEnd.setEnabled(false);
+        txtEmailUso.setEnabled(false);
+        txtCpfUso.setEnabled(false);
+        txtCelUso.setEnabled(false);
+        txtCepUso.setEnabled(false);
+        txtUso.setEnabled(false);
+        txtSenha.setEnabled(false);
+        btnSalvaUso.setEnabled(false);
+        btnEditUso.setEnabled(true);
+
+    }
+
+    private void ativacamposuso() {
+        txtNomeUso.setEnabled(true);
+        txtCidadeUso.setEnabled(true);
+        txtUfUso.setEnabled(true);
+        txtEndUso.setEnabled(true);
+        txtNumEnd.setEnabled(true);
+        txtEmailUso.setEnabled(true);
+        txtCpfUso.setEnabled(true);
+        txtCelUso.setEnabled(true);
+        txtCepUso.setEnabled(true);
+        txtUso.setEnabled(true);
+        txtSenha.setEnabled(true);
+        btnSalvaUso.setEnabled(true);
+        btnEditUso.setEnabled(false);
+
+    }
+
+    private void btnSalvaUsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaUsoActionPerformed
+        if (txtNomeUso.getText().isEmpty()
+                || txtCidadeUso.getText().isEmpty()
+                || txtUfUso.getText().isEmpty()
+                || txtEndUso.getText().isEmpty()
+                || txtNumEnd.getText().isEmpty()
+                || txtEmailUso.getText().isEmpty()
+                || txtCpfUso.getText().isEmpty()
+                || txtCelUso.getText().isEmpty()
+                || txtCepUso.getText().isEmpty()
+                || txtUso.getText().isEmpty()
+                || txtSenha.getText().isEmpty()
+                || btnSalvaUso.getText().isEmpty()
+                || btnEditUso.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios e não podem estar em branco!");
+        } else {
+            editauso();
+            preencheralterado();
+            desativacamposuso();
+        }
+
+    }//GEN-LAST:event_btnSalvaUsoActionPerformed
+
+    private void btnEditUsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUsoActionPerformed
+        ativacamposuso();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditUsoActionPerformed
+    private void setaescola() {
+        String sql1 = "select * from escola where idcli=?";
+
+        try {
+            pst = conexao.prepareStatement(sql1);
+            pst.setString(1, txtIdUso.getText());
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                txtNomeEstado.setText(rs.getString("esc_estado"));
+                txtSecretaria.setText(rs.getString("esc_secretaria"));
+                txtNomeEscola.setText(rs.getString("esc_ecola"));
+                txtCidadeEscola.setText(rs.getString("esc_cidade"));
+                txtEndEsc.setText(rs.getString("esc_endereco"));
+                txtUfEscola.setText(rs.getString("esc_uf"));
+                txtNumEsco.setText(rs.getString("esc_num"));
+
+                if (rs.getBytes("esc_brasao") != null) {
+                    ImageIcon foto1 = new ImageIcon(rs.getBytes("esc_brasao"));
+                    vfoto2 = rs.getBytes("esc_brasao");
+                    foto1.setImage(foto1.getImage().getScaledInstance(lblFoto2.getWidth(), lblFoto2.getHeight(), Image.SCALE_AREA_AVERAGING));
+                    lblFoto2.setIcon(foto1);
+                    vfoto2 = null;
+                } else {
+                    ImageIcon foto1 = new ImageIcon(localfoto2);
+                    foto1.setImage(foto1.getImage().getScaledInstance(lblFoto2.getWidth(), lblFoto2.getHeight(), Image.SCALE_AREA_AVERAGING));
+                    lblFoto2.setIcon(foto1);
+                }
+
+            }
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao carregar informações da escola " + e);
+        }
+
+    }
+
+    private void editaescola() {
+        String sql = "update escola set esc_estado=?,esc_secretaria=?,esc_ecola=?,esc_cidade=?,esc_endereco=?,esc_uf=?,esc_num=?,esc_brasao=? where idcli=?";
+
+        try {
+
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtNomeEstado.getText());
+            pst.setString(2, txtSecretaria.getText());
+            pst.setString(3, txtNomeEscola.getText());
+            pst.setString(4, txtCidadeEscola.getText());
+            pst.setString(5, txtEndEsc.getText());
+            pst.setString(6, txtUfEscola.getText());
+            pst.setString(7, txtNumEsco.getText());
+
+            if (vfoto2 == null) {
+
+                String caminho = localfoto2;
+                foto002 = ManipularImagem.setImagemDimensao(caminho, lblFoto2.getWidth(), lblFoto2.getHeight());
+                vfoto2 = ManipularImagem.getImgBytes(foto002);
+                pst.setBytes(8, vfoto2);
+            } else {
+                pst.setBytes(8, vfoto2);
+            }
+            pst.setString(9, txtIdUso.getText());
+
+            int adicionado = pst.executeUpdate();//caso a adição for concluida cai no if
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Informações da escola alteradas com sucesso!");
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao editar escola: " + e);
+        }
+
+    }
+
+    private void btnSalvaEscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaEscActionPerformed
+        if (txtNomeEstado.getText().isEmpty()
+                || txtSecretaria.getText().isEmpty()
+                || txtNomeEscola.getText().isEmpty()
+                || txtCidadeEscola.getText().isEmpty()
+                || txtEndEsc.getText().isEmpty()
+                || txtUfEscola.getText().isEmpty()
+                || txtNumEsco.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios e não podem estar em branco!");
+        } else {
+
+            editaescola();
+            desativacamposescola();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvaEscActionPerformed
+    private void ativacamposescola() {
+
+        txtNomeEstado.setEnabled(true);
+        txtSecretaria.setEnabled(true);
+        txtNomeEscola.setEnabled(true);
+        txtCidadeEscola.setEnabled(true);
+        txtEndEsc.setEnabled(true);
+        txtUfEscola.setEnabled(true);
+        txtNumEsco.setEnabled(true);
+        btnSalvaEsc.setEnabled(true);
+        btnTrocaBras.setEnabled(true);
+        btnEditEsc.setEnabled(false);
+    }
+
+    private void desativacamposescola() {
+        txtNomeEstado.setEnabled(false);
+        txtSecretaria.setEnabled(false);
+        txtNomeEscola.setEnabled(false);
+        txtCidadeEscola.setEnabled(false);
+        txtEndEsc.setEnabled(false);
+        txtUfEscola.setEnabled(false);
+        txtNumEsco.setEnabled(false);
+        btnSalvaEsc.setEnabled(false);
+        btnTrocaBras.setEnabled(false);
+        btnEditEsc.setEnabled(true);
+
+    }
+    private void btnEditEscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditEscActionPerformed
+        ativacamposescola();
+    }//GEN-LAST:event_btnEditEscActionPerformed
+    private void ativalicenca() throws Exception {
+
+        String mode = Modulo.modulo1(txtLicNome.getText() + txtLicEmail.getText() + txtLicCpf.getText() + txtIdUso.getText());
+        txtLic.setText(mode);
+        
+        String mod2 = Modulo.modulo1(txtLic.getText()+txtIdUso.getText());
+        
+        if(txtLicAut.getText().equals(mod2)){
+            
+            JOptionPane.showMessageDialog(null, "Sistema Licenciado obrigado pela compra!");
+        
+            System.out.println(mod2);
+        }else{
+        
+            JOptionPane.showMessageDialog(null, "A chave informada ou as informações de usuário estão erradas!\nVerifique as informações enviadas para o seu e-mail.\nCaso tenha duvidas entrar em contato pelo número (69) 9.99209-9315");
+        System.out.println(mod2);
+        }
+    }
+    private void btnAtivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtivaActionPerformed
+        try {
+            ativalicenca();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "erro interno!"+ex);
+        
+        }
+    }//GEN-LAST:event_btnAtivaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1158,7 +1552,6 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -1183,6 +1576,7 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblFoto2;
     private javax.swing.JTable tblComp;
     private javax.swing.JFormattedTextField txtCelUso;
