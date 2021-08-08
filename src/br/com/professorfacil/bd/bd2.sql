@@ -98,6 +98,9 @@ lic_data_licenca varchar (30)
 insert into licenca (idcli,lic_status)
 values ("2",false);
 
+-- update licenca set lic_status = true where idlicenca = '1';
+-- update licenca set lic_data_valida = '21/02/1993' where idlicenca = '1';
+
 create table escola (
 idescola int primary key auto_increment not null,
 esc_estado varchar (400),

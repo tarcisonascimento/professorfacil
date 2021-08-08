@@ -14,6 +14,7 @@ import net.proteanit.sql.DbUtils;
 import br.com.professorfacil.classes.Modulo;
 import static br.com.professorfacil.classes.Modulo.modulo1;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,14 +75,45 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
             if (rs.next()) {
 
                 String situacao = rs.getString("lic_descricao");
+                boolean status = rs.getBoolean("lic_status");
+
+                if (status == true && situacao.equals("Software Licenciado, Obrigado!")) {
+
+                    txtLicNome.setText(rs.getString("lic_nomecli"));
+                    txtLicEmail.setText(rs.getString("lic_emailcli"));
+                    txtLicCpf.setText(rs.getString("lic_cpfcli"));
+                    txtLicCel.setText(rs.getString("lic_celularcli"));
+                    txtLic.setText(rs.getString("lic_chave"));
+                    txtLicAut.setText(rs.getString("lic_licenca"));
+                    txtLicDataLic.setText(rs.getString("lic_data_licenca"));
+                    txtLicVal.setText(rs.getString("lic_data_valida"));
+                    txtLicNome.setEnabled(false);
+                    txtLicEmail.setEnabled(false);
+                    txtLicCpf.setEnabled(false);
+                    txtLicCel.setEnabled(false);
+                    txtLic.setEnabled(false);
+                    txtLicAut.setEnabled(false);
+                    txtLicDataLic.setEnabled(false);
+                    txtLicVal.setEnabled(false);
+                    btnComprar.setEnabled(false);
+                    btnAtiva.setEnabled(false);
+
+                }
+
 
                 if (situacao.equals("Não Licenciado")) {
                     lblDescricao.setText(situacao);
                     lblDescricao.setForeground(new Color(255, 51, 0));
                 }
+                if (situacao.equals("Expirado")) {
+                    lblDescricao.setText(situacao);
+                    lblDescricao.setForeground(new Color(255, 51, 0));
+
+                }
                 if (situacao.equals("Em Processamento")) {
                     lblDescricao.setText(situacao);
                     lblDescricao.setForeground(new Color(0, 61, 250));
+                    btnComprar.setEnabled(false);
                 }
                 if (situacao.equals("Software Licenciado, Obrigado!")) {
                     lblDescricao.setText(situacao);
@@ -1501,26 +1533,26 @@ public class TelaConfiguracao extends javax.swing.JInternalFrame {
 
         String mode = Modulo.modulo1(txtLicNome.getText() + txtLicEmail.getText() + txtLicCpf.getText() + txtIdUso.getText());
         txtLic.setText(mode);
-        
-        String mod2 = Modulo.modulo1(txtLic.getText()+txtIdUso.getText());
-        
-        if(txtLicAut.getText().equals(mod2)){
-            
+
+        String mod2 = Modulo.modulo1(txtLic.getText() + txtIdUso.getText());
+
+        if (txtLicAut.getText().equals(mod2)) {
+
             JOptionPane.showMessageDialog(null, "Sistema Licenciado obrigado pela compra!");
-        
+
             System.out.println(mod2);
-        }else{
-        
+        } else {
+
             JOptionPane.showMessageDialog(null, "A chave informada ou as informações de usuário estão erradas!\nVerifique as informações enviadas para o seu e-mail.\nCaso tenha duvidas entrar em contato pelo número (69) 9.99209-9315");
-        System.out.println(mod2);
+            System.out.println(mod2);
         }
     }
     private void btnAtivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtivaActionPerformed
         try {
             ativalicenca();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "erro interno!"+ex);
-        
+            JOptionPane.showMessageDialog(null, "erro interno!" + ex);
+
         }
     }//GEN-LAST:event_btnAtivaActionPerformed
 
